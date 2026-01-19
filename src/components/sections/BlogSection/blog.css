@@ -1,0 +1,64 @@
+.blog {
+  background: var(--color-background-secondary);
+}
+
+.blog-list {
+  margin-top: 80px;
+  margin-left: -160px;
+  margin-right: -160px;
+  padding-left: 160px;
+  padding-right: 160px;
+}
+
+/* Large Desktop - 1440px */
+@media (max-width: 1440px) {
+  .blog-list {
+    margin-top: 60px;
+    margin-left: -80px;
+    margin-right: -80px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+/* Desktop - 1200px */
+@media (max-width: 1200px) {
+  .blog-list {
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+  .blog-list {
+    margin-top: 40px;
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Mobile - 768px */
+@media (max-width: 768px) {
+  .blog-list {
+    margin-top: 32px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Small Mobile - 480px */
+@media (max-width: 480px) {
+  .blog-list {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

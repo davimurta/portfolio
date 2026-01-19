@@ -1,7 +1,7 @@
 import React from 'react';
 
 type TextSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
-type TextVariant = 'primary' | 'secondary' | 'tertiary';
+type TextVariant = 'primary' | 'secondary' | 'tertiary' | 'link';
 type TextAlign = 'left' | 'center' | 'right' | 'justify';
 type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 type TextFont = 'inter' | 'fraunces';
@@ -27,10 +27,20 @@ const sizeMap: Record<TextSize, string> = {
   '3xl': '96px',
 };
 
+const lineHeightMap: Record<TextSize, number> = {
+  sm: 1.5,
+  md: 1.5,
+  lg: 1.4,
+  xl: 1.2,
+  '2xl': 1,
+  '3xl': 1,
+};
+
 const variantMap: Record<TextVariant, string> = {
   primary: 'var(--text-primary)',
   secondary: 'var(--text-secondary)',
   tertiary: 'var(--text-tertiary)',
+  link: 'var(--accent)',
 };
 
 const weightMap: Record<TextWeight, number> = {
@@ -57,12 +67,14 @@ export const Text: React.FC<TextProps> = ({
   as: Component = 'p',
 }) => {
   const fontSize = typeof size === 'number' ? `${size}px` : sizeMap[size];
+  const lineHeight = typeof size === 'number' ? 1.5 : lineHeightMap[size];
   const color = variantMap[variant];
   const fontWeight = weightMap[weight];
   const fontFamily = fontMap[font];
 
   const defaultStyle: React.CSSProperties = {
     fontSize,
+    lineHeight,
     color,
     textAlign: align,
     fontWeight,
@@ -75,6 +87,10 @@ export const Text: React.FC<TextProps> = ({
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
+    ...(variant === 'link' && {
+      borderBottom: '2px solid var(--accent)',
+      display: 'inline-block',
+    }),
   };
 
   const combinedStyle = { ...defaultStyle, ...customStyle };

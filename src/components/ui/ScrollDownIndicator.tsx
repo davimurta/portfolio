@@ -1,40 +1,53 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export function ScrollDownIndicator() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const checkInitialPosition = () => {
       const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-
-      if (scrollPosition > 10) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
+      setIsVisible(scrollPosition <= 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    checkInitialPosition();
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsVisible(scrollPosition <= 10);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     window.scrollBy({
       top: window.innerHeight,
       behavior: 'smooth'
     });
-  };
+  }, []);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  }, [handleClick]);
 
   return (
-    <div
-      className={`fixed left-1/2 transform -translate-x-1/2 transition-opacity duration-300 cursor-pointer z-50 ${
+    <button
+      type="button"
+      className={`fixed left-1/2 transform -translate-x-1/2 transition-opacity duration-300 cursor-pointer z-50 bg-transparent border-none p-2 ${
         isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
       style={{ bottom: '20px' }}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      aria-label="Scroll down to next section"
+      aria-hidden={!isVisible}
+      tabIndex={isVisible ? 0 : -1}
     >
       <div className="flex flex-col items-center gap-2 animate-bounce">
         <svg
@@ -44,6 +57,7 @@ export function ScrollDownIndicator() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="text-text-primary"
+          aria-hidden="true"
         >
           <path
             d="M12 5V19M12 19L5 12M12 19L19 12"
@@ -54,6 +68,6 @@ export function ScrollDownIndicator() {
           />
         </svg>
       </div>
-    </div>
+    </button>
   );
 }

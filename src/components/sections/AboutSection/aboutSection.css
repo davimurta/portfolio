@@ -1,0 +1,191 @@
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  background: var(--background-primary);
+  overflow-x: hidden;
+}
+
+.about-content.on {
+  text-align: end;
+}
+
+.about-content.off {
+  text-align: start;
+}
+
+.about-content {
+  max-width: 515px;
+}
+
+.about-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-bottom: 20px;
+}
+
+.title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.about-title-text {
+  font-size: 96px;
+  line-height: 1;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.about-title-text.fraunces {
+  font-family: var(--font-fraunces);
+}
+
+.title-row svg {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.about-description {
+  max-width: 100%;
+}
+
+.about-button {
+  margin-top: 20px;
+}
+
+/* Large Desktop - 1440px */
+@media (max-width: 1440px) {
+  .about {
+    gap: 80px;
+  }
+
+  .about-content {
+    max-width: 450px;
+  }
+
+  .about-title-text {
+    font-size: 80px;
+  }
+
+  .title-row svg {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Desktop - 1200px */
+@media (max-width: 1200px) {
+  .about {
+    gap: 60px;
+  }
+
+  .about-content {
+    max-width: 400px;
+  }
+
+  .about-title-text {
+    font-size: 64px;
+  }
+
+  .title-row svg {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+  .about {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .about-content {
+    max-width: 600px;
+  }
+
+  .about-content.on,
+  .about-content.off {
+    text-align: center;
+  }
+
+  .title-row {
+    justify-content: center;
+  }
+
+  .about-title-text {
+    font-size: 56px;
+  }
+
+  .title-row svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .about-button {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Mobile - 768px */
+@media (max-width: 768px) {
+  .about {
+    gap: 32px;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+
+  .about-title {
+    margin-bottom: 16px;
+  }
+
+  .about-title-text {
+    font-size: 44px;
+  }
+
+  .title-row svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .title-row {
+    gap: 12px;
+  }
+
+  .about-button {
+    margin-top: 16px;
+  }
+}
+
+/* Small Mobile - 480px */
+@media (max-width: 480px) {
+  .about {
+    gap: 24px;
+  }
+
+  .about-title-text {
+    font-size: 36px;
+  }
+
+  .title-row svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .title-row {
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

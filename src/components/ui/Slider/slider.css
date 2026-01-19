@@ -1,0 +1,19 @@
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  cursor: grab;
+  user-select: none;
+  padding-top: 12px;
+  padding-bottom: 20px;
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}

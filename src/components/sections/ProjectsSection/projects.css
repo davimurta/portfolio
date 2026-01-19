@@ -1,0 +1,84 @@
+.projects {
+  margin-top: 440px;
+  background: var(--background-secondary);
+}
+
+.projects-list {
+  margin-top: 60px;
+  margin-left: -160px;
+  margin-right: -160px;
+  padding-left: 160px;
+  padding-right: 160px;
+}
+
+/* Large Desktop - 1440px */
+@media (max-width: 1440px) {
+  .projects {
+    margin-top: 300px;
+  }
+
+  .projects-list {
+    margin-left: -80px;
+    margin-right: -80px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+/* Desktop - 1200px */
+@media (max-width: 1200px) {
+  .projects {
+    margin-top: 200px;
+  }
+
+  .projects-list {
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 40px;
+  }
+}
+
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+  .projects {
+    margin-top: 100px;
+  }
+
+  .projects-list {
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Mobile - 768px */
+@media (max-width: 768px) {
+  .projects {
+    margin-top: 60px;
+  }
+
+  .projects-list {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 32px;
+  }
+}
+
+/* Small Mobile - 480px */
+@media (max-width: 480px) {
+  .projects {
+    margin-top: 40px;
+  }
+
+  .projects-list {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

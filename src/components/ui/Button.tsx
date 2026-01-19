@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
+import styles from './Button.module.css';
 
 type ButtonVariant = 'primary' | 'secondary';
 
@@ -9,68 +10,32 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   icon?: LucideIcon;
   iconPosition?: 'left' | 'right';
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export function Button({
   variant = 'primary',
   icon: Icon,
-  iconPosition = 'left',
+  iconPosition = 'right',
   children,
   className = '',
-  style: customStyle,
   ...props
 }: ButtonProps) {
-  const [isHovered, setIsHovered] = React.useState(false);
-
-  const baseStyles: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '8px',
-    paddingLeft: '20px',
-    paddingRight: '20px',
-    paddingTop: '12px',
-    paddingBottom: '12px',
-    fontSize: '20px',
-    fontWeight: 500,
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    border: 'none',
-    outline: 'none',
-  };
-
-  const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
-    primary: {
-      backgroundColor: isHovered ? '#6B50B8' : '#7A5CCB',
-      color: '#FFFFFF',
-      borderRadius: '8px',
-    },
-    secondary: {
-      backgroundColor: 'transparent',
-      color: '#6B50B8',
-      borderBottom: '2px solid #6B50B8',
-      borderRadius: '0',
-    },
-  };
-
-  const combinedStyles = {
-    ...baseStyles,
-    ...variantStyles[variant],
-    ...customStyle,
-  };
+  const buttonClasses = [
+    styles.button,
+    styles[variant],
+    !children && styles.iconOnly,
+    className
+  ].filter(Boolean).join(' ');
 
   return (
     <button
-      style={combinedStyles}
-      className={className}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={buttonClasses}
       {...props}
     >
-      {Icon && iconPosition === 'left' && <Icon size={24} />}
+      {Icon && iconPosition === 'left' && <Icon size={24} aria-hidden="true" />}
       {children}
-      {Icon && iconPosition === 'right' && <Icon size={24} />}
+      {Icon && iconPosition === 'right' && <Icon size={24} aria-hidden="true" />}
     </button>
   );
 }
