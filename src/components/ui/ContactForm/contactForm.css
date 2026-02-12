@@ -53,6 +53,21 @@
   margin-top: 10px;
 }
 
+.form-error {
+  padding: 12px 16px;
+  background-color: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.form-field input:disabled,
+.form-field textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Tablet - 1024px */
 @media (max-width: 1024px) {
   .form-submit {

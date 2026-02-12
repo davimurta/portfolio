@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import { Button } from '../Button';
 import { CustomSelect } from '../CustomSelect';
-import { ArrowUpRight } from 'lucide-react';
+import { Send, Check, Loader2 } from 'lucide-react';
 import './contactForm.css';
+
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,6 +15,8 @@ export function ContactForm() {
     projectType: '',
     message: ''
   });
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -29,9 +33,55 @@ export function ContactForm() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission (send to API)
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/public/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao enviar mensagem');
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', projectType: '', message: '' });
+
+      // Reset success state after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Erro ao enviar mensagem');
+    }
+  };
+
+  const getButtonContent = () => {
+    switch (status) {
+      case 'loading':
+        return 'Sending...';
+      case 'success':
+        return 'Message sent!';
+      default:
+        return 'Send message';
+    }
+  };
+
+  const getButtonIcon = () => {
+    switch (status) {
+      case 'loading':
+        return Loader2;
+      case 'success':
+        return Check;
+      default:
+        return Send;
+    }
   };
 
   return (
@@ -45,6 +95,7 @@ export function ContactForm() {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            disabled={status === 'loading'}
             required
           />
         </div>
@@ -57,6 +108,7 @@ export function ContactForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            disabled={status === 'loading'}
             required
           />
         </div>
@@ -89,13 +141,25 @@ export function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           rows={6}
+          disabled={status === 'loading'}
           required
         />
       </div>
 
+      {status === 'error' && (
+        <div className="form-error">
+          {errorMessage}
+        </div>
+      )}
+
       <div className="form-submit">
-        <Button type="submit" variant="primary" icon={ArrowUpRight}>
-          View case
+        <Button
+          type="submit"
+          variant={status === 'success' ? 'secondary' : 'primary'}
+          icon={getButtonIcon()}
+          disabled={status === 'loading' || status === 'success'}
+        >
+          {getButtonContent()}
         </Button>
       </div>
     </form>

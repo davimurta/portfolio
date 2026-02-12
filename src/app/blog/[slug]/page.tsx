@@ -1,22 +1,18 @@
 import { notFound } from 'next/navigation'
-import { getBlogPostBySlug, blogPostsData } from '@/data'
+import { getBlogPostBySlug, getAllBlogSlugs } from '@/data'
 import { BlogPostDetail } from './BlogPostDetail'
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>
 }
 
-// Gera as rotas estáticas para os posts
 export async function generateStaticParams() {
-  return blogPostsData.map((post) => ({
-    slug: post.slug,
-  }))
+  return await getAllBlogSlugs()
 }
 
-// Metadata dinâmica para SEO
 export async function generateMetadata({ params }: BlogPageProps) {
   const { slug } = await params
-  const { data: post } = await getBlogPostBySlug(slug)
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
     return {
@@ -32,7 +28,7 @@ export async function generateMetadata({ params }: BlogPageProps) {
 
 export default async function BlogPage({ params }: BlogPageProps) {
   const { slug } = await params
-  const { data: post } = await getBlogPostBySlug(slug)
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
     notFound()

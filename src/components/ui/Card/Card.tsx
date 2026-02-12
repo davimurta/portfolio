@@ -6,6 +6,7 @@ import Text from '../Text'
 import Image from 'next/image'
 import Link from 'next/link'
 import { m } from 'framer-motion'
+import { isValidLocalImage } from '@/lib/utils'
 import './card.css'
 
 interface CardProps {
@@ -23,6 +24,8 @@ export const Card = ({
   tags = [],
   link
 }: CardProps) => {
+  const hasImage = isValidLocalImage(image)
+
   const cardContent = (
     <m.div
       className='card'
@@ -33,7 +36,9 @@ export const Card = ({
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        {image && <Image src={image} alt={title} fill className='card-image-element' />}
+        {hasImage && (
+          <Image src={image!} alt={title} fill className='card-image-element' />
+        )}
       </m.div>
       <div className='card-content'>
         <Text size='lg' as='h3' variant='primary'>{title}</Text>

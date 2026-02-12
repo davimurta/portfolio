@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"c:\\\\Users\\\\Davi\\\\Desktop\\\\portfolio\\\\src\"\" 2>/dev/null || echo \"No src directory \")",
+      "Bash(npm install:*)",
+      "Bash(npx prisma init:*)",
+      "Bash(npx prisma db push:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(if not exist \"c:\\\\Users\\\\Davi\\\\Desktop\\\\portfolio\\\\src\\\\app\\\\api\\\\admin\\\\project\\\\[id]\" mkdir \"c:\\\\Users\\\\Davi\\\\Desktop\\\\portfolio\\\\src\\\\app\\\\api\\\\admin\\\\project\\\\[id]\")",
+      "Bash(\"c:\\\\Users\\\\Davi\\\\Desktop\\\\portfolio\\\\src\\\\app\\\\api\\\\admin\\\\project\\\\[id]\\\\route.ts\")"
+    ]
+  }
+}

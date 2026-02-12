@@ -1,12 +1,13 @@
 .slider {
   display: flex;
   overflow-x: auto;
-  scroll-behavior: smooth;
+  overflow-y: hidden;
   cursor: grab;
   user-select: none;
   padding-top: 12px;
   padding-bottom: 20px;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .slider::-webkit-scrollbar {
@@ -16,4 +17,19 @@
 .slider.dragging {
   cursor: grabbing;
   scroll-behavior: auto;
+}
+
+.slider img {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.slider:focus {
+  outline: none;
+}
+
+.slider:focus-visible {
+  outline: 2px solid var(--accent, #6B50B8);
+  outline-offset: 4px;
+  border-radius: 8px;
 }

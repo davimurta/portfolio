@@ -30,7 +30,7 @@ const itemVariants: Variants = {
 export const SkillsSection = () => {
   return (
     <section id='skills' className='skills'>
-      <SectionHeader title="Skills" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+      <SectionHeader title="Skills" description="Tecnologias e ferramentas que utilizo para criar soluções digitais completas." />
       <div className="flex skills-content">
         <m.div
           className="main-stack"

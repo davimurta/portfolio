@@ -1,6 +1,6 @@
 .blog-post-detail {
   min-height: 100vh;
-  padding: 40px 160px;
+  padding: 40px 0;
 }
 
 .blog-post-article {
@@ -22,6 +22,7 @@
   color: var(--color-text-secondary);
   transition: color 0.2s ease;
   width: fit-content;
+  text-decoration: none;
 }
 
 .back-link:hover {
@@ -35,8 +36,15 @@
   width: fit-content;
 }
 
+/* Título responsivo */
 .blog-post-title {
   line-height: 1.2;
+}
+
+.blog-post-title > * {
+  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .blog-post-meta {
@@ -62,6 +70,7 @@
   border-radius: 50%;
   overflow: hidden;
   background: var(--color-background-tertiary);
+  flex-shrink: 0;
 }
 
 .avatar-image {
@@ -72,6 +81,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .info-item {
@@ -92,7 +102,7 @@
 }
 
 .post-image {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .blog-post-content {
@@ -103,6 +113,8 @@
   color: var(--color-text-tertiary);
   line-height: 1.8;
   font-size: 1.1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .blog-content-text h1,
@@ -115,15 +127,15 @@
 }
 
 .blog-content-text h1 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .blog-content-text h2 {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
 }
 
 .blog-content-text h3 {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
 }
 
 .blog-content-text p {
@@ -140,7 +152,8 @@
   padding: 2px 8px;
   border-radius: 4px;
   font-family: 'Fira Code', monospace;
-  font-size: 0.9em;
+  font-size: 0.85em;
+  word-break: break-word;
 }
 
 .blog-content-text pre {
@@ -149,13 +162,15 @@
   border-radius: 12px;
   overflow-x: auto;
   margin: 24px 0;
+  max-width: 100%;
 }
 
 .blog-content-text pre code {
   background: none;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.6;
+  word-break: normal;
 }
 
 .blog-content-text li {
@@ -166,6 +181,17 @@
 
 .blog-content-text ol li {
   list-style-type: decimal;
+}
+
+.blog-content-text a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.blog-content-text img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 .blog-post-tags {
@@ -189,30 +215,8 @@
   background: var(--color-background-tertiary);
 }
 
-/* Large Desktop - 1440px */
-@media (max-width: 1440px) {
-  .blog-post-detail {
-    padding: 40px 80px;
-  }
-}
-
-/* Desktop - 1200px */
-@media (max-width: 1200px) {
-  .blog-post-detail {
-    padding: 40px 40px;
-  }
-
-  .blog-post-image {
-    height: 350px;
-  }
-}
-
 /* Tablet - 1024px */
 @media (max-width: 1024px) {
-  .blog-post-detail {
-    padding: 32px 24px;
-  }
-
   .blog-post-header {
     gap: 16px;
     margin-bottom: 32px;
@@ -241,10 +245,6 @@
 
 /* Mobile - 768px */
 @media (max-width: 768px) {
-  .blog-post-detail {
-    padding: 24px 16px;
-  }
-
   .blog-post-header {
     gap: 12px;
     margin-bottom: 24px;
@@ -260,28 +260,18 @@
     padding: 4px 12px;
   }
 
-  .blog-content-text h1 {
-    font-size: 1.5rem;
-    margin-top: 32px;
-    margin-bottom: 16px;
-  }
-
-  .blog-content-text h2 {
-    font-size: 1.25rem;
-    margin-top: 28px;
-    margin-bottom: 14px;
-  }
-
-  .blog-content-text h3 {
-    font-size: 1.1rem;
-    margin-top: 24px;
-    margin-bottom: 12px;
+  .blog-content-text {
+    font-size: 0.95rem;
   }
 
   .blog-content-text pre {
     padding: 16px;
-    border-radius: 8px;
-    margin: 20px 0;
+    margin: 20px -16px;
+    border-radius: 0;
+  }
+
+  .blog-content-text li {
+    margin-left: 20px;
   }
 
   .blog-post-content {
@@ -300,17 +290,12 @@
 
 /* Small Mobile - 480px */
 @media (max-width: 480px) {
-  .blog-post-detail {
-    padding: 20px 12px;
-  }
-
   .blog-post-image {
     height: 180px;
     border-radius: 8px;
   }
 
   .blog-post-info {
-    flex-wrap: wrap;
     gap: 12px;
   }
 
@@ -318,12 +303,8 @@
     gap: 4px;
   }
 
-  .blog-content-text {
-    font-size: 0.95rem;
-  }
-
   .blog-content-text pre code {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .author-avatar {

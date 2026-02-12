@@ -21,7 +21,7 @@
 }
 
 .card-image-element {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .card-content {

@@ -1,22 +1,18 @@
 import { notFound } from 'next/navigation'
-import { getProjectBySlug, projectsData } from '@/data'
+import { getProjectBySlug, getAllProjectSlugs } from '@/data'
 import { ProjectDetail } from './ProjectDetail'
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
 }
 
-// Gera as rotas estáticas para os projetos
 export async function generateStaticParams() {
-  return projectsData.map((project) => ({
-    slug: project.slug,
-  }))
+  return await getAllProjectSlugs()
 }
 
-// Metadata dinâmica para SEO
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params
-  const { data: project } = await getProjectBySlug(slug)
+  const project = await getProjectBySlug(slug)
 
   if (!project) {
     return {
@@ -32,7 +28,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
-  const { data: project } = await getProjectBySlug(slug)
+  const project = await getProjectBySlug(slug)
 
   if (!project) {
     notFound()

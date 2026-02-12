@@ -31,7 +31,7 @@ export function AboutSection() {
           </div>
           <h2 className='about-title-text'>KEYBOARD</h2>
         </div>
-        <Text size='sm' as='p' variant='tertiary' className='about-description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Text>
+        <Text size='sm' as='p' variant='tertiary' className='about-description'>Desenvolvedor Web e Mobile focado em criar experiências digitais modernas, performáticas e com código limpo. Sempre buscando aprender novas tecnologias e boas práticas.</Text>
         <Button className='about-button' variant='primary' icon={ArrowDownLeft}></Button>
       </m.div>
       <m.div
@@ -45,7 +45,7 @@ export function AboutSection() {
           </div>
           <h2 className='about-title-text'>KEYBOARD</h2>
         </div>
-        <Text size='sm' as='p' variant='tertiary' className='about-description'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Text>
+        <Text size='sm' as='p' variant='tertiary' className='about-description'>Fora do código, gosto de explorar novas ideias, aprender sobre design e buscar inspiração em diferentes áreas para trazer criatividade aos meus projetos.</Text>
         <Button className='about-button' variant='primary' icon={ArrowUpRight}></Button>
       </m.div>
     </section>

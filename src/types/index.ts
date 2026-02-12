@@ -36,10 +36,3 @@ export interface Author {
   avatar: string
   bio?: string
 }
-
-// API Response Types (para quando migrar para backend)
-export interface ApiResponse<T> {
-  data: T
-  success: boolean
-  message?: string
-}

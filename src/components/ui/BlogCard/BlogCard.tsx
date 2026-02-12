@@ -5,6 +5,7 @@ import Text from '../Text'
 import Image from 'next/image'
 import Link from 'next/link'
 import { m } from 'framer-motion'
+import { isValidLocalImage } from '@/lib/utils'
 import './blogCard.css'
 
 interface BlogCardProps {
@@ -26,13 +27,17 @@ export const BlogCard = ({
   readTime = '5 min read',
   link
 }: BlogCardProps) => {
+  const hasImage = isValidLocalImage(image)
+
   const cardContent = (
     <m.article
       className='blog-card'
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
     >
       <div className='blog-card-image'>
-        {image && <Image src={image} alt={title} fill className='blog-card-image-element' />}
+        {hasImage && (
+          <Image src={image!} alt={title} fill className='blog-card-image-element' />
+        )}
         <span className='blog-card-category'>
           <Text size='sm' as='span' variant='primary'>{category}</Text>
         </span>

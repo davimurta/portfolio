@@ -40,13 +40,6 @@
   gap: 60px;
 }
 
-.services-cards {
-  width: 380px;
-  height: 440px;
-  background: var(--color-background-tertiary);
-  border-radius: 8px;
-}
-
 /* Large Desktop - 1440px */
 @media (max-width: 1440px) {
   .skills-content {
